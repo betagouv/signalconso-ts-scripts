@@ -25,6 +25,7 @@
     "@alexandreannic/ts-utils": "^1.7.1",
     "@signal-conso/signalconso-api-sdk-js": "^3.2.1",
     "@types/axios": "^0.14.0",
+    "@types/dotenv": "^8.2.0",
     "@types/node-fetch": "^2.5.10",
     "axios": "^0.26.0",
     "csv-parser": "^3.0.0",

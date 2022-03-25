@@ -27,7 +27,7 @@ export interface ReportExtResult {
   files: UploadedFile[]
 }
 
-interface ReportExtSearch {
+export interface ReportExtSearch {
   siret?: string[]
   start?: Date
   end?: Date

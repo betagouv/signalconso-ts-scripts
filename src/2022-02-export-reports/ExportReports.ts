@@ -2,7 +2,7 @@ import {ApiClient, ReportSearch, ReportTag} from '@signal-conso/signalconso-api-
 import {config} from '../core/Config'
 import {PaginatedData} from '@signal-conso/signalconso-api-sdk-js/lib/model'
 import * as fs from 'fs'
-import {ReportExt, ReportExtResult, SignalConsoExtSdk} from '../core/SignalConsoExtSdk'
+import {ReportExt, ReportExtResult, ReportExtSearch, SignalConsoExtSdk} from '../core/SignalConsoExtSdk'
 import {stringify} from 'csv-stringify/sync'
 
 const scriptParams: {
@@ -47,7 +47,7 @@ const forEachReportsBatch = async ({
   fn,
   requestBathSize = 1000,
 }: {
-  filters: Omit<ReportSearch, 'limit' | 'offset'>,
+  filters: Omit<ReportExtSearch, 'limit' | 'offset'>,
   fn: (reports: ReportExtResult) => Promise<void> | void,
   requestBathSize?: number,
 }) => {
@@ -96,7 +96,7 @@ const main = async () => {
 
   file.write(scriptParams.columns.join(',') + '\n')
   await forEachReportsBatch({
-    filters: {withTags: [ReportTag.Bloctel]},
+    filters: {tags: [ReportTag.Bloctel]},
     fn: res => {
       file.write(stringify([writeCsvLine(res.report)]))
     },
