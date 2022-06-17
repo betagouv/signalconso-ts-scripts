@@ -33,12 +33,12 @@ const scriptParams: {
     'reponseconsoCode',
     // 'ccrfCode',
     // 'tags',
-  ]
+  ],
 }
 
 const apiClient = new ApiClient({
   baseUrl: config.apiBaseUrl + '/api',
-  headers: {'X-Api-Key': config.reponseConsoApiToken}
+  headers: {'X-Api-Key': config.reponseConsoApiToken},
 })
 const apiSdk = new SignalConsoExtSdk(apiClient)
 
@@ -47,9 +47,9 @@ const forEachReportsBatch = async ({
   fn,
   requestBathSize = 1000,
 }: {
-  filters: Omit<ReportExtSearch, 'limit' | 'offset'>,
-  fn: (reports: ReportExtResult) => Promise<void> | void,
-  requestBathSize?: number,
+  filters: Omit<ReportExtSearch, 'limit' | 'offset'>
+  fn: (reports: ReportExtResult) => Promise<void> | void
+  requestBathSize?: number
 }) => {
   let res: PaginatedData<ReportExtResult> | undefined
   let offset = 0
@@ -64,31 +64,31 @@ const forEachReportsBatch = async ({
   } while (res?.hasNextPage)
 }
 
-const writeCsvLine = (report: ReportExt): { [K in keyof ReportExt]: string } => {
-  const parser: { [K in keyof ReportExt]: (_: ReportExt[K], r: ReportExt) => string } = {
-    id: (x) => x,
-    creationDate: (x) => x?.toISOString(),
-    category: (x) => x,
-    subcategories: (x) => JSON.stringify(x),
-    details: (x) => JSON.stringify(x),
-    postalCode: (x) => x ?? '',
-    siret: (x) => x ?? '',
-    websiteURL: (x) => x ?? '',
-    phone: (x) => x ?? '',
-    consumerPhone: (x) => x ?? '',
-    firstName: (x) => x,
-    lastName: (x) => x,
-    email: (x) => x,
-    contactAgreement: (x) => '' + x,
-    effectiveDate: (x) => x ?? '',
-    reponseconsoCode: (x) => JSON.stringify(x),
-    ccrfCode: (x) => JSON.stringify(x),
-    tags: (x) => JSON.stringify(x),
+const writeCsvLine = (report: ReportExt): {[K in keyof ReportExt]: string} => {
+  const parser: {[K in keyof ReportExt]: (_: ReportExt[K], r: ReportExt) => string} = {
+    id: x => x,
+    creationDate: x => x?.toISOString(),
+    category: x => x,
+    subcategories: x => JSON.stringify(x),
+    details: x => JSON.stringify(x),
+    postalCode: x => x ?? '',
+    siret: x => x ?? '',
+    websiteURL: x => x ?? '',
+    phone: x => x ?? '',
+    consumerPhone: x => x ?? '',
+    firstName: x => x,
+    lastName: x => x,
+    email: x => x,
+    contactAgreement: x => '' + x,
+    effectiveDate: x => x ?? '',
+    reponseconsoCode: x => JSON.stringify(x),
+    ccrfCode: x => JSON.stringify(x),
+    tags: x => JSON.stringify(x),
   }
   return scriptParams.columns.reduce((res, column) => {
     res[column] = parser[column]!((report as any)[column], report)
     return res
-  }, {} as { [K in keyof ReportExt]: string })
+  }, {} as {[K in keyof ReportExt]: string})
 }
 
 const main = async () => {
@@ -100,7 +100,7 @@ const main = async () => {
     fn: res => {
       file.write(stringify([writeCsvLine(res.report)]))
     },
-    requestBathSize: scriptParams.batchSize
+    requestBathSize: scriptParams.batchSize,
   }).catch(console.error)
 }
 

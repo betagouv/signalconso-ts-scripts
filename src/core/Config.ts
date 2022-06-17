@@ -5,7 +5,7 @@ dotenv.config()
 
 enum Env {
   REPONSE_CONSO_API_TOKEN = 'REPONSE_CONSO_API_TOKEN',
-  API_BASE_URL = 'API_BASE_URL'
+  API_BASE_URL = 'API_BASE_URL',
 }
 
 const env = initEnv(process.env)

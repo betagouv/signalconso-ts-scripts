@@ -15,12 +15,12 @@ const max = 500
 let total = 0
 
 ;(async () => {
-
-  await axios.get(`https://signal-api.conso.gouv.fr/api/ext/reports?tags=ReponseConso`, {
-    headers: {
-      'X-Api-Key': 'test'
-    },
-  })
+  await axios
+    .get(`https://signal-api.conso.gouv.fr/api/ext/reports?tags=ReponseConso`, {
+      headers: {
+        'X-Api-Key': 'test',
+      },
+    })
     .then(_ => _.data)
     .then((res: Report[]) => res.map(_ => _.report))
     .then(reports => {
