@@ -8,6 +8,8 @@
     "npm": "8.11.0"
   },
   "scripts": {
+    "start-npm-pin": "ts-node src/2022-06-npm-pin-installed-versions/NpmPinInstalledVersions.ts",
+    "start-npm-2-yarn": "ts-node src/2022-06-npm-2-yarn/Npm2Yarn.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "npx prettier --write .",
     "checkformat": "npx prettier --check ."
