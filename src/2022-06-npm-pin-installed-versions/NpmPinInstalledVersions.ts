@@ -10,19 +10,19 @@ import {execSync} from 'child_process'
 
 // You probably want to prepare the target folder first with some commands like "nvm use" and "npm install" or "npm ci"
 
-const FOLDER = '../website'
+const FOLDER = '../dashboard'
 
 // Additionnal feature :
 // These hardcoded dependencies will be added to the package.json
-const OTHERS_DEPS_TO_ADD = {
+const OTHERS_DEPS_TO_ADD: {dependencies: {[k: string]: string}; devDependencies: {[k: string]: string}} = {
   dependencies: {
-    '@sentry/react': '6.19.7',
-    '@mui/styled-engine': '5.8.0',
-    '@mui/system': '5.8.1',
-    '@babel/runtime': '7.18.3',
+    // '@sentry/react': '6.19.7',
+    // '@mui/styled-engine': '5.8.0',
+    // '@mui/system': '5.8.1',
+    // '@babel/runtime': '7.18.3',
   },
   devDependencies: {
-    '@jest/types': '27.5.1',
+    // '@jest/types': '27.5.1',
   },
 }
 

@@ -4,7 +4,7 @@ import {execSync} from 'child_process'
 
 // One-shot script to migrate a repo from npm to yarn
 
-const FOLDER = '../website'
+const FOLDER = '../dashboard'
 
 console.log('Running script to migrate from npm to yarn')
 
@@ -30,7 +30,7 @@ function addLineToFile(filePath: string, line: string) {
 
 runCommand('rm -rf node_modules')
 runCommand('rm -rf package-lock.json')
-runCommand('nvm use')
+// runCommand('nvm use')
 
 console.log('Removing engines.npm from package.json')
 editPackageJson(json => {
