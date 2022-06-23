@@ -10,6 +10,8 @@
   "scripts": {
     "start-npm-pin": "ts-node src/2022-06-npm-pin-installed-versions/NpmPinInstalledVersions.ts",
     "start-npm-2-yarn": "ts-node src/2022-06-npm-2-yarn/Npm2Yarn.ts",
+    "start-reclaim-alex-libs": "ts-node src/2022-06-reclaim-alex-libs/index.ts",
+    "start-publish-sdk-test": "ts-node src/2022-06-publish-sdk-test/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "npx prettier --write .",
     "checkformat": "npx prettier --check ."
