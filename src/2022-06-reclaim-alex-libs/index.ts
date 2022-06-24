@@ -3,6 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import {execSync} from 'child_process'
 
+// dummy
 // One-shot script replaces imports from '@alexandreannic/..' to a local relative path
 
 const SRC_FOLDER = '../dashboard/src'
