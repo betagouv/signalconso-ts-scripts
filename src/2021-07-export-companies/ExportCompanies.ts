@@ -31,7 +31,6 @@ import csvParser from 'csv-parser'
 //     console.log(x)
 // use row data
 // })
-
 ;(async () => {
   const columns =
     'id|category|subcategories|company_name|company_address|creation_date|contact_agreement|company_siret|company_postal_code|status|company_id|tags|company_country'.split(
