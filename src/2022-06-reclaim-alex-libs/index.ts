@@ -3,7 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import {execSync} from 'child_process'
 
-// One-shot script replaces imports from '@alexandreannic/..' to a local relative path
+// One-shot script replaces imports from '@alexandreannic/..' and 'mui-extension' and 'react-persistent-state' to a local relative path
 
 const SRC_FOLDER = '../dashboard/src'
 const PATH_TO_ALEX_LIBS_FROM_SRC = './alexlibs'
@@ -39,6 +39,11 @@ const getRelativePathToAlexLibsFromDepth = (depth: number): string => {
             .replaceAll('@alexandreannic', getRelativePathToAlexLibsFromDepth(currentDepth))
             .replaceAll(/ts-utils\/.*'/g, "ts-utils'")
             .replaceAll(/react-hooks-lib\/.*'/g, "react-hooks-lib'")
+            .replaceAll(/'mui-extension.*'/g, "'" + getRelativePathToAlexLibsFromDepth(currentDepth) + "/mui-extension'")
+            .replaceAll(
+              /'react-persistent-state.*'/g,
+              "'" + getRelativePathToAlexLibsFromDepth(currentDepth) + "/react-persistent-state'",
+            )
           if (fileContent != fileContentReplaced) {
             console.log('Adjusted file', item)
             fs.writeFileSync(item, fileContentReplaced, 'utf-8')
